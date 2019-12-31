@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CodePaste</title>
+    <style>
+        .b {
+            /* width: 500px;
+            border: 1px solid red;
+            text-align: right; */
+        }
+        
+        .info {
+            display: inline-block;
+        }
+        
+        .label {
+            width: 100px;
+            text-align: right;
+        }
+        
+        .input {
+            width: 250px;
+        }
+        
+        #code {
+            margin-left: 100px;
+            width: 800px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function HTMLEncode(html) {
+            var temp = document.createElement("div");
+            (temp.textContent != null) ? (temp.textContent = html) : (temp.innerText = html);
+            var output = temp.innerHTML;
+            temp = null;
+            return output;
+        }
+
+        function Posts() {
+            var tagText = document.getElementsByName("code")[0].value;
+            tagText = HTMLEncode(tagText); //&lt;p&gt;&lt;b&gt;123&amp;456&lt;/b&gt;&lt;/p&gt;
+            // document.getElementsByName("code")[0].value = tagText;
+            console.log(tagText);
+            document.getElementsByName("code")[0].value =tagText;
+            // var json = {
+            //     "language": document.getElementById("language").value,
+            //     "author": document.getElementById("author").value,
+            //     "expiration": document.getElementById("expiration").value,
+            //     "password": document.getElementById("password").value,
+            //     "code": tagText
+            // };
+            // document.getElementsByName("code")[0].value = JSON.stringify(json);
+            // alert(document.getElementById("code").value);
+            return true;
+        }
+    </script>
+    <form class="b" action='proc.php' method='post' id='test_form' onsubmit='return Posts()'>
+        <div><span class="info label">language:</span><span class="inp"><input class="input" type="text" id="language" name="language"></span></div>
+        <div><span class="info label">author:</span><span class="inp"><input  class="input" type="text" id="author" name="author"></span></div>
+        <div><span class="info label">expiration:</span><span class="inp"><input  class="input" type="text" id="expiration" name="expiration"></span></div>
+        <div><span class="info label">password:</span><span class="inp"><input  class="input" type="text" id="password" name="password"></span></div>
+        <div><span class="info label">title:</span><span class="inp"><input  class="input" type="text" id="title" name="title"></span></div>
+        <div>
+            <div class="label">code:</div><textarea id="code" name="code"></textarea></div>
+        <input type="submit" value="Paste!">
+    </form>
+
+    <p>提示: 这个和同类paste服务网站一样，都是贴代码的</p>
+    <p>1. language是语言标注，实际是用来标注高亮风格的，纯文本是plaintext（遵循highlight.js）</p>
+    <p>2. author是作者，或者来源之类的吧</p>
+    <p>3. expiration到期时间，单位是秒，常见的是1天86400秒，1周604800秒，如果输入-1则永久</p>
+    <p>4. password是访问密码，留空不设置</p>
+    <p>5. code直接粘贴过去就行</p>
+    <p>为什么不用同类已有的平台（比如UbuntuPaste或者PrivateBin）</p>
+    <p>不好找到自己贴过的东西，而且偶尔想翻一个自己以前贴过的东西的时候，已经过期。这个可以避免这种情况（服务器是明文存储的，而且可以修改过期时间，之前用PrivateBin，很安全，但是我自己都看不了╮(╯▽╰)╭）</p>
+    <!-- <p></p>
+    <p>后期更新计划</p>
+    <p>1. 允许按照文件下载的功能</p>
+    <p>2. 留言功能</p>
+    <p>3. 项目的展示（可能不做。。）</p>
+    <p>4. </p> -->
+
+</body>
+
+</html>
