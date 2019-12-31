@@ -3,3 +3,5 @@ data
 123
 desk
 *.zip
+.user.ini
+.htacess
